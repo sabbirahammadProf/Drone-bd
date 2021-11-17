@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Black drone",
+        "price": 495,
+        "description": "The drone is best if you want a black drone for day time. You can use it by RGB light.",
+        "image": "https://i.ibb.co/xF6yHGJ/room2.jpg",
+        "colors": "black",
+        "stock": 5
+    },
+    {
+        "name": "White drone",
+        "price": 200,
+        "description": "The drone is best if you want a black drone for night time. You can use it by blue light.",
+        "image": "https://i.ibb.co/xF6yHGJ/room2.jpg",
+        "colors": "white",
+        "stock": 3
+    },
+    {
+        "name": "Blue drone with RGB",
+        "price": 765,
+        "description": "If you want a drone with RGB light you can buy this. It is best for night time.",
+        "image": "https://i.ibb.co/xF6yHGJ/room2.jpg",
+        "colors": "blue, white, black",
+        "stock": 1
+    },
+    {
+        "name": "Spy camera added",
+        "price": 2000,
+        "description": "Some people like drone with spy camera. We are selling drone with spy camera.",
+        "image": "https://i.ibb.co/xF6yHGJ/room2.jpg",
+        "colors": "white",
+        "stock": 1
+    },
+    {
+        "name": "Official drone",
+        "price": 4000,
+        "description": "We have official drone which is approved by the Government. You can buy without a hassale.",
+        "image": "https://i.ibb.co/xF6yHGJ/room2.jpg",
+        "colors": "black, white, tomato",
+        "stock": 1
+    },
+    {
+        "name": "Toy drone",
+        "price": 100,
+        "description": "We have toy drone which is used for simple work. You cannot use it as professional.",
+        "image": "https://i.ibb.co/xF6yHGJ/room2.jpg",
+        "colors": "black, white, tomato",
+        "stock": 20
+    }
+]
