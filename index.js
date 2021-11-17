@@ -16,10 +16,13 @@ async function run() {
         await client.connect();
         const databse = client.db('DroneBd');
         const dronesCollection = await databse.collection('drones');
+        const reviewsCollection = await databse.collection('reviews');
+        const usersCollection = await databse.collection('users');
+        const ordersCollection = await databse.collection('orders');
 
         app.get('/drones', async (req, res) => {
-            const quantity = req.query.homeQtity;
-            const cursor = dronesCollection.find({}).limit(parseInt(quantity));
+            const quantity = parseInt(req.query.homeQtity);
+            const cursor = dronesCollection.find({}).limit(quantity);
             const drones = await cursor.toArray();
             res.send(drones);
         });
@@ -28,6 +31,42 @@ async function run() {
             const cursor = dronesCollection.find({});
             const drones = await cursor.toArray();
             res.send(drones);
+        });
+
+        app.get('/drone/:id', async (req, res) => {
+            const droneId = req.params.id;
+            const result = await dronesCollection.find({ "_id": ObjectID(droneId) }).toArray();
+            res.send(result);
+        });
+
+        app.get('/reviews', async (req, res) => {
+            const cursor = reviewsCollection.find({});
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+        app.get('/users', async (req, res) => {
+            const cursor = usersCollection.find({});
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+        app.post('/users', async (req, res) => {
+            const body = req.body;
+            const result = await usersCollection.insertOne(body);
+            res.send(result);
+        });
+
+        app.get('/orders', async (req, res) => {
+            const cursor = ordersCollection.find({});
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
+        app.post('/orders', async (req, res) => {
+            const body = req.body;
+            const result = await ordersCollection.insertOne(body);
+            res.send(result);
         });
 
 
