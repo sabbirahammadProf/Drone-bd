@@ -70,6 +70,17 @@ async function run() {
         });
 
 
+        app.get('/user', async (req, res) => {
+            const userEmail = req.query.email;
+            const query = { email: userEmail };
+            const user = await usersCollection.find(query).toArray();
+            if (user[0].role === "admin") {
+                res.json({ "admin": true })
+            } else {
+                res.json({ "admin": false })
+            }
+        });
+
     } finally {
 
     }
