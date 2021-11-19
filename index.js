@@ -33,6 +33,18 @@ async function run() {
             res.send(drones);
         });
 
+        app.post('/alldrones', async (req, res) => {
+            const body = req.body;
+            const result = await dronesCollection.insertOne(body);
+            res.send(result);
+        });
+
+        app.delete('/alldrones/:id', async (req, res) => {
+            const id = req.params.id;
+            const result = await dronesCollection.deleteOne({ "_id": ObjectID(id) });
+            res.json(result);
+        });
+
         app.get('/drone/:id', async (req, res) => {
             const droneId = req.params.id;
             const result = await dronesCollection.find({ "_id": ObjectID(droneId) }).toArray();
@@ -45,6 +57,12 @@ async function run() {
             res.send(result);
         });
 
+        app.post('/reviews', async (req, res) => {
+            const body = req.body;
+            const result = await reviewsCollection.insertOne(body);
+            res.json(result);
+        });
+
         app.get('/users', async (req, res) => {
             const cursor = usersCollection.find({});
             const result = await cursor.toArray();
@@ -54,6 +72,22 @@ async function run() {
         app.post('/users', async (req, res) => {
             const body = req.body;
             const result = await usersCollection.insertOne(body);
+            res.json(result);
+        });
+
+        app.put('/users', async (req, res) => {
+            const email = req.query.email;
+            const getUser = await usersCollection.find({ email: email }).toArray();
+            let result = null;
+            if (getUser[0]) {
+                result = await usersCollection.updateOne({ email: email }, {
+                    $set: {
+                        role: "admin"
+                    }
+                })
+            } else {
+                result = { "error": "User not found" }
+            }
             res.send(result);
         });
 
@@ -69,6 +103,29 @@ async function run() {
             res.send(result);
         });
 
+        app.put('/orders/:id/:processing', async (req, res) => {
+            const id = req.params.id;
+            const processing = req.params.processing;
+            const result = await ordersCollection.updateOne({ "_id": ObjectID(id) }, {
+                $set: {
+                    pending: processing
+                }
+            });
+            res.send(result);
+        });
+
+        app.get('/myorders', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email };
+            const result = await ordersCollection.find(query).toArray();
+            res.send(result);
+        });
+
+        app.delete('/myorders/:id', async (req, res) => {
+            const id = req.params.id;
+            const result = await ordersCollection.deleteOne({ "_id": ObjectID(id) });
+            res.json(result);
+        });
 
         app.get('/user', async (req, res) => {
             const userEmail = req.query.email;
