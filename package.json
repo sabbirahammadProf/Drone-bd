@@ -1,7 +1,7 @@
 {
   "name": "drone-bd-server-side",
   "version": "1.0.0",
-  "description": "",
+  "description": "It is the server side of the project. We provide drone from the all over the world. You can order a drone from us an we will bring it for you.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -15,5 +15,13 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongodb": "^4.1.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabbirahammadProf/Drone-bd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sabbirahammadProf/Drone-bd/issues"
+  },
+  "homepage": "https://github.com/sabbirahammadProf/Drone-bd#readme"
 }
